@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<!-- by Abdullah As-Sadeed -->
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bitscoper IoT</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Abdullah As-Sadeed" />
+    <meta name="description" content="Bitscoper IoT" />
+    <link rel="stylesheet" type="text/css" href="CSS" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/smoothie/1.34.0/smoothie.min.js"
+      integrity="sha512-PNAPdJIoyrliVDPtSFYtH9pFQyeTxofjm3vAueqtsduqKqMCaMIiJcGzMYECbnep0sT0qdqWemVbSm2h86NdjQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body lang="en-US">
+    <div class="top_bar">
+      <h1>Bitscoper IoT</h1>
+      Version: %COMPILE_DATE_TIME%
+    </div>
+    <div class="cards">
+      <div class="card">
+        <p class="card_heading">Acceleration (MPU9250)</p>
+        <canvas
+          class="chart"
+          id="accelerometer_chart"
+          width="256"
+          height="144"
+        ></canvas>
+        <p><b>X:</b> <span id="Acceleration_X">%Acceleration_X%</span> g</p>
+        <p><b>Y:</b> <span id="Acceleration_Y">%Acceleration_Y%</span> g</p>
+        <p><b>Z:</b> <span id="Acceleration_Z">%Acceleration_Z%</span> g</p>
+        <p>
+          <b>Resultant:</b>
+          <span id="Resultant_Acceleration">%Resultant_Acceleration%</span> g
+        </p>
+      </div>
+      <div class="card">
+        <p class="card_heading">Gyro (MPU9250)</p>
+        <canvas
+          class="chart"
+          id="gyroscope_chart"
+          width="256"
+          height="144"
+        ></canvas>
+        <p><b>X:</b> <span id="Gyro_X">%Gyro_X%</span> deg/s</p>
+        <p><b>Y:</b> <span id="Gyro_Y">%Gyro_Y%</span> deg/s</p>
+        <p><b>Z:</b> <span id="Gyro_Z">%Gyro_Z%</span> deg/s</p>
+      </div>
+      <div class="card">
+        <p class="card_heading">Compass (MPU9250)</p>
+        <canvas
+          class="chart"
+          id="magnetometer_chart"
+          width="256"
+          height="144"
+        ></canvas>
+        <p><b>X:</b> <span id="Magneto_X">%Magneto_X%</span> µT</p>
+        <p><b>Y:</b> <span id="Magneto_Y">%Magneto_Y%</span> µT</p>
+        <p><b>Z:</b> <span id="Magneto_Z">%Magneto_Z%</span> µT</p>
+      </div>
+      <div class="card">
+        <p class="card_heading">Speed (GPS)</p>
+        <canvas
+          class="chart"
+          id="speedometer_chart"
+          width="256"
+          height="144"
+        ></canvas>
+        <p><span id="Speed">%SPEED%</span> m/s</p>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <p class="card_heading">Light (BH1750)</p>
+        <canvas
+          class="chart"
+          id="light_chart"
+          width="256"
+          height="144"
+        ></canvas>
+        <p><span id="Light">%LIGHT%</span> lux</p>
+      </div>
+      <div class="card">
+        <p class="card_heading">Temperature (MPU9250)</p>
+        <canvas
+          class="chart"
+          id="mpu9250_thermometer_chart"
+          width="256"
+          height="144"
+        ></canvas>
+        <p>
+          <span id="Temperature_MPU9250">%Temperature_MPU9250%</span> &deg;C
+        </p>
+      </div>
+      <div class="card">
+        <p class="card_heading">Temperature (BME280)</p>
+        <canvas
+          class="chart"
+          id="bme280_thermometer_chart"
+          width="256"
+          height="144"
+        ></canvas>
+        <p><span id="Temperature_BME280">%Temperature_BME280%</span> &deg;C</p>
+      </div>
+      <div class="card">
+        <p class="card_heading">Humidity (BME280)</p>
+        <canvas
+          class="chart"
+          id="hygrometer_chart"
+          width="256"
+          height="144"
+        ></canvas>
+        <p><span id="Humidity">%HUMIDITY%</span> &percnt;</p>
+      </div>
+      <div class="card">
+        <p class="card_heading">Pressure (BME280)</p>
+        <canvas
+          class="chart"
+          id="barometer_chart"
+          width="256"
+          height="144"
+        ></canvas>
+        <p><span id="Pressure">%PRESSURE%</span> Pa</p>
+      </div>
+      <div class="card">
+        <p class="card_heading">Altitude (BME280)</p>
+        <canvas
+          class="chart"
+          id="bme280_altimeter_chart"
+          width="256"
+          height="144"
+        ></canvas>
+        <p><span id="Altitude_BME280">%ALTITUDE%</span> m</p>
+      </div>
+      <div class="card">
+        <p class="card_heading">Altitude (GPS)</p>
+        <canvas
+          class="chart"
+          id="gps_altimeter_chart"
+          width="256"
+          height="144"
+        ></canvas>
+        <p><span id="Altitude_GPS">%ALTITUDE_GPS%</span> m</p>
+      </div>
+      <div class="card" id="GPS_table_container">
+        <table>
+          <tbody>
+            <tr>
+              <th>Latitude</th>
+              <td id="Latitude">%LATITUDE%</td>
+            </tr>
+            <tr>
+              <th>Longitude</th>
+              <td id="Longitude">%LONGITUDE%</td>
+            </tr>
+            <tr>
+              <th>Course</th>
+              <td id="Course">%COURSE%</td>
+            </tr>
+            <tr>
+              <th>Satellites</th>
+              <td id="Satellites">%SATELLITES%</td>
+            </tr>
+            <tr>
+              <th>HDOP</th>
+              <td id="HDOP">%HDOP%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <p class="card_heading">MQ 2</p>
+        <canvas class="chart" id="mq2_chart" width="256" height="144"></canvas>
+        <p><span id="MQ_2">%MQ_2%</span></p>
+      </div>
+      <div class="card">
+        <p class="card_heading">MQ 3</p>
+        <canvas class="chart" id="mq3_chart" width="256" height="144"></canvas>
+        <p><span id="MQ_3">%MQ_3%</span></p>
+        <p></p>
+      </div>
+      <div class="card">
+        <p class="card_heading">MQ 4</p>
+        <canvas class="chart" id="mq4_chart" width="256" height="144"></canvas>
+        <p><span id="MQ_4">%MQ_4%</span></p>
+      </div>
+      <div class="card">
+        <p class="card_heading">MQ 5</p>
+        <canvas class="chart" id="mq5_chart" width="256" height="144"></canvas>
+        <p><span id="MQ_5">%MQ_5%</span></p>
+      </div>
+      <div class="card">
+        <p class="card_heading">MQ 6</p>
+        <canvas class="chart" id="mq6_chart" width="256" height="144"></canvas>
+        <p><span id="MQ_6">%MQ_6%</span></p>
+      </div>
+      <div class="card">
+        <p class="card_heading">MQ 7</p>
+        <canvas class="chart" id="mq7_chart" width="256" height="144"></canvas>
+        <p><span id="MQ_7">%MQ_7%</span></p>
+      </div>
+      <div class="card">
+        <p class="card_heading">MQ 8</p>
+        <canvas class="chart" id="mq8_chart" width="256" height="144"></canvas>
+        <p><span id="MQ_8">%MQ_8%</span></p>
+      </div>
+      <div class="card">
+        <p class="card_heading">MQ 9</p>
+        <canvas class="chart" id="mq9_chart" width="256" height="144"></canvas>
+        <p><span id="MQ_9">%MQ_9%</span></p>
+      </div>
+      <div class="card">
+        <p class="card_heading">MQ 135</p>
+        <canvas
+          class="chart"
+          id="mq135_chart"
+          width="256"
+          height="144"
+        ></canvas>
+        <p><span id="MQ_135">%MQ_135%</span></p>
+      </div>
+    </div>
+    <table>
+      <tbody>
+        <tr>
+          <th colspan="3">Actions</th>
+        </tr>
+        <tr>
+          <th rowspan="2">Relay Switches</th>
+          <th>Relay 1</th>
+          <th>Relay 2</th>
+        </tr>
+        <tr>
+          <td>
+            <button
+              type="button"
+              class="relay_button"
+              data-number="1"
+              data-state="1"
+            >
+              On
+            </button>
+            <button
+              type="button"
+              class="relay_button"
+              data-number="1"
+              data-state="0"
+            >
+              Off
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="relay_button"
+              data-number="2"
+              data-state="1"
+            >
+              On
+            </button>
+            <button
+              type="button"
+              class="relay_button"
+              data-number="2"
+              data-state="0"
+            >
+              Off
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <th>Morse Code</th>
+          <td colspan="2">
+            <form id="morse_code_form">
+              <input
+                type="text"
+                placeholder="Enter message..."
+                name="message"
+                title="Enter message"
+              />
+              <input
+                type="submit"
+                id="morse_code_submit_button"
+                value="Send"
+                title="Click to send"
+              />
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <th>LCD Backlight</th>
+          <td colspan="2"></td>
+        </tr>
+        <tr>
+          <th rowspan="2">Reboot</th>
+          <th>Master (%CHIP_MODEL%)</th>
+          <th>Slave (Arduino Mega 2560)</th>
+        </tr>
+        <tr>
+          <td>
+            <button type="button" id="reboot_button">Reboot</button>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>I2C Devices</th>
+          <td colspan="2">
+            <button type="button" id="Scan_I2C">Scan</button>
+            <div id="I2C_Scan_Result"></div>
+          </td>
+        </tr>
+        <tr>
+          <th>Nearby Wi-Fi</th>
+          <td colspan="2">
+            <button type="button" id="Scan_WiFi">Scan</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <tr>
+        <th colspan="2">About</th>
+      </tr>
+      <tr>
+        <th>Chip Revision (Master)</th>
+        <td>%CHIP_REVISION%</td>
+      </tr>
+      <tr>
+        <th>Chip Cores (Master)</th>
+        <td>%CHIP_CORES%</td>
+      </tr>
+      <tr>
+        <th>Chip ID (Master)</th>
+        <td>%CHIP_ID%</td>
+      </tr>
+      <tr>
+        <th>MAC Address</th>
+        <td>%MAC_ADDRESS%</td>
+      </tr>
+      <tr>
+        <th>Host Name</th>
+        <td>%HOST_NAME%</td>
+      </tr>
+      <tr>
+        <th>Local IP Address</th>
+        <td>%LOCAL_IP_ADDRESS%</td>
+      </tr>
+      <tr>
+        <th>Any Wrong Card</th>
+        <td>%ANY_FAILED_AUTHENTICATION%</td>
+      </tr>
+      <tr>
+        <th>Master Uptime</th>
+        <td><span id="UpTime">%UPTIME%</span> s</td>
+      </tr>
+      <tr>
+        <th>Slave Uptime</th>
+        <td><span id="Slave_UpTime">%SLAVE_UPTIME%</span> s</td>
+      </tr>
+    </table>
+    <div id="WiFi_Scan_Result"></div>
+    <div id="BlackBody_Motion" title="Blackbody Motion">M</div>
+    <div id="Flame" title="Flame">F</div>
+    <script src="JavaScript"></script>
+  </body>
+</html>

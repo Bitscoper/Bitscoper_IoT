@@ -1,0 +1,151 @@
+/* By Abdullah As-Sadeed */
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+*:focus {
+  outline: none;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  text-align: center;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-bottom: 40px;
+}
+.top_bar {
+  overflow: hidden;
+  background-color: darkslategrey;
+  color: white;
+  padding-bottom: 20px;
+}
+h1 {
+  margin-bottom: 0;
+}
+.cards {
+  margin: auto auto;
+  max-width: 1366px;
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 40px 20px;
+}
+.card {
+  box-shadow: 0px 0px 20px 1px silver;
+  border-radius: 10px;
+  max-width: 300px;
+}
+.card_heading {
+  font-weight: bold;
+}
+canvas {
+  display: block;
+  background-color: transparent;
+}
+.chart {
+  width: 100%;
+}
+#GPS_table_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.alert_box {
+  visibility: hidden;
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 20px;
+}
+
+.alert_box.show {
+  visibility: visible;
+  animation: alert_box_in 0.5s, alert_box_out 0.5s 2.5s;
+}
+
+@keyframes alert_box_in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes alert_box_out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+button {
+  cursor: pointer;
+}
+table {
+  border: 1px solid silver;
+  margin: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+th,
+td {
+  border: 1px solid silver;
+  padding: 5px 15px;
+}
+#I2C_Scan_Result {
+  white-space: pre-wrap;
+}
+#BlackBody_Motion {
+  display: none;
+  height: 40px;
+  width: 40px;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}
+#Flame {
+  display: none;
+  height: 40px;
+  width: 40px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
