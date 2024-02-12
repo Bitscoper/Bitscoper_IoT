@@ -567,7 +567,7 @@ void Get_Slave_Readings(void)
 {
   while (Slave_Board.available())
   {
-    StaticJsonDocument<1000> Slave_Readings;
+    JsonDocument Slave_Readings;
 
     DeserializationError JSON_Error = deserializeJson(Slave_Readings, Slave_Board);
 
@@ -1026,7 +1026,7 @@ void loop(void)
   {
     digitalWrite(Work_LED_Pin, HIGH);
 
-    StaticJsonDocument<1000> Readings;
+    JsonDocument Readings;
 
     Get_Readings();
 

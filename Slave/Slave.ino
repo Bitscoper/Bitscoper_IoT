@@ -23,7 +23,7 @@ void setup(void)
 
 void loop(void)
 {
-  StaticJsonDocument<1000> Readings;
+  JsonDocument Readings;
 
   MQ_2_Value = analogRead(MQ_2);
   MQ_3_Value = analogRead(MQ_3);
