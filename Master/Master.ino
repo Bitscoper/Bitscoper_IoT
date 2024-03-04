@@ -17,7 +17,7 @@
 */
 
 /*
-  /home/Abdullah_As-Sadeed/.arduino15/packages/esp32/hardware/esp32/2.0.14/cores/esp32/HardwareSerial.cpp
+  /home/bitscoper/.arduino15/packages/esp32/hardware/esp32/2.0.14/cores/esp32/HardwareSerial.cpp
 
   #ifndef RX1
   #if CONFIG_IDF_TARGET_ESP32
