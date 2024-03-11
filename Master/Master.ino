@@ -10,10 +10,13 @@
   Flash Mode: "DIO"
   Flash Size: "4MB (32Mb)"
   Partition Scheme: "Huge APP (3MB No OTA/1MB SPIFFS)"
-  Core Debug Level: "Verbose"
+  Core Debug Level: "Warn"
   PSRAM: "Disabled"
   Arduino Runs On: "Core 1"
   Events Run On: "Core 1"
+  Erase All Flash Before Sketch Upload: "Disabled"
+  JTAG Adapter: "Disabled"
+  Programmer: "Esptool"
 */
 
 /*

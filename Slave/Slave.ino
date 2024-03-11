@@ -1,5 +1,10 @@
 /* by Abdullah As-Sadeed */
 
+/*
+Board: "Arduino Mega or Mega 2560"
+Processor: "ATmega2560 (Mega 2560)"
+*/
+
 #define Master_Board Serial2
 
 #include "ArduinoJson.h"
